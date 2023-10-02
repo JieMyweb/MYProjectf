@@ -1,0 +1,59 @@
+﻿@model Project2.Models.tMember
+
+@{
+    ViewData["Title"] = "會員註冊";
+}
+
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">會員註冊</h1>
+                    </div>
+                    <div class="card-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.fUserId, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.fUserId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fUserId, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.fPwd, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.fPwd, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fPwd, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.fName, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(model => model.fEmail, new { @class = "form-label" })
+                            @Html.EditorFor(model => model.fEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fEmail, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-secondary">會員註冊</button>
+                            @ViewBag.msg
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="text-center mt-3">
+    <a asp-action="Index">回上一頁</a>
+</div>

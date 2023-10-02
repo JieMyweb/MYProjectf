@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Project2.Models.tOrder>
+
+@{
+    ViewData["Title"] = "訂單列表";
+}
+
+<h1 class="mt-3">訂單列表</h1>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.fOrderGuid)</th>
+            <th>@Html.DisplayNameFor(model => model.fUserId)</th>
+            <th>@Html.DisplayNameFor(model => model.fReceiver)</th>
+            <th>@Html.DisplayNameFor(model => model.fEmail)</th>
+            <th>@Html.DisplayNameFor(model => model.fAddress)</th>
+            <th>@Html.DisplayNameFor(model => model.fDate)</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.fOrderGuid)</td>
+                <td>@Html.DisplayFor(modelItem => item.fUserId)</td>
+                <td>@Html.DisplayFor(modelItem => item.fReceiver)</td>
+                <td>@Html.DisplayFor(modelItem => item.fEmail)</td>
+                <td>@Html.DisplayFor(modelItem => item.fAddress)</td>
+                <td>@Html.DisplayFor(modelItem => item.fDate)</td>
+                <td>
+                    <a href="@Url.Action("OrderDetail")?fOrderGuid=@item.fOrderGuid"
+                       class="btn btn-info">訂單詳情</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("OrderListDelete")?fOrderGuid=@item.fOrderGuid"
+                       class="btn btn-danger">刪除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Project2.Models.tOrderDetail>
+
+@{
+    ViewData["Title"] = "ShoppingCar";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">購物車</h1>
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.fPId)</th>
+                        <th>@Html.DisplayNameFor(model => model.fName)</th>
+                        <th>@Html.DisplayNameFor(model => model.fPrice)</th>
+                        <th>@Html.DisplayNameFor(model => model.fQty)</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.fPId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.fName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.fPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.fQty)</td>
+                            <td><a class="btn btn-danger" asp-action="Delete" asp-route-fPId="@item.fPId">删除</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:100px;">
+        <div class="col">
+            <form action="@Url.Action("ShoppingCar")" method="post">
+                <h4>填寫訂單收件人資料</h4>
+                <hr />
+
+                <div class="mb-3">
+                    <label for="fReceiver" class="form-label">收件人姓名</label>
+                    <input type="text" id="fReceiver" name="fReceiver" required="required" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="fEmail" class="form-label">收件人信箱</label>
+                    <input type="email" id="fEmail" name="fEmail" required="required" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="fAddress" class="form-label">收件人地址</label>
+                    <input type="text" id="fAddress" name="fAddress" required="required" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">確認訂購</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
